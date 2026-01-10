@@ -1,0 +1,111 @@
+
+import React from 'react';
+import { ArrowUpRight, FolderGit2, Globe, Github } from 'lucide-react';
+import { PROJECTS } from '../constants';
+import { Link } from 'react-router-dom';
+import CardBackground from '../components/CardBackground';
+import ScrollReveal from '../components/ScrollReveal';
+import TiltCard from '../components/TiltCard';
+
+const Works: React.FC = () => {
+  return (
+    <div className="w-full pt-32 pb-16 px-6">
+      <div className="max-w-6xl mx-auto">
+        
+        <ScrollReveal animation="fade-up">
+          <div className="text-center mb-16">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-bold text-primary uppercase tracking-wider mb-6">
+                  <FolderGit2 size={14} /> Portfolio
+              </div>
+              <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 font-display">
+                  Selected <span className="text-primary">Works</span>
+              </h1>
+              <p className="text-textMuted text-lg max-w-xl mx-auto leading-relaxed">
+                  A showcase of my technical projects involving AI, Machine Learning, and Full Stack Development.
+              </p>
+          </div>
+        </ScrollReveal>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+          {PROJECTS.map((project, idx) => (
+            <ScrollReveal key={project.id} animation={idx % 2 === 0 ? 'slide-left' : 'slide-right'} delay={idx * 100} distance={50}>
+              <TiltCard className="h-full">
+                  <div className="group relative rounded-3xl bg-[#050505] border border-white/20 overflow-hidden hover:border-white/40 transition-all duration-500 hover:shadow-[0_0_40px_-10px_rgba(255,255,255,0.15)] flex flex-col h-full shadow-[0_0_20px_-10px_rgba(255,255,255,0.08)]">
+                    
+                    <CardBackground />
+
+                    {/* Window Header Style Image Container */}
+                    <div className="relative h-64 w-full overflow-hidden z-10 border-b border-white/10 bg-[#0A0A0A] group-hover:border-white/20 transition-colors">
+                      {/* Window Controls Decoration */}
+                      <div className="absolute top-4 left-4 z-20 flex gap-2">
+                          <div className="w-3 h-3 rounded-full bg-red-500/20 border border-red-500/50"></div>
+                          <div className="w-3 h-3 rounded-full bg-yellow-500/20 border border-yellow-500/50"></div>
+                          <div className="w-3 h-3 rounded-full bg-green-500/20 border border-green-500/50"></div>
+                      </div>
+
+                      {/* Year Badge */}
+                      <div className="absolute top-4 right-4 z-20 bg-black/60 backdrop-blur-md px-3 py-1 rounded-lg text-xs font-bold text-white border border-white/10 shadow-lg">
+                          {project.year}
+                      </div>
+
+                      <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors z-10"></div>
+                      <img 
+                        src={project.image} 
+                        alt={project.title} 
+                        className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700" 
+                      />
+                    </div>
+                    
+                    {/* Content */}
+                    <div className="p-8 relative z-10 flex flex-col flex-grow bg-gradient-to-b from-[#050505] to-transparent">
+                      <div className="mb-6">
+                          <div className="flex justify-between items-start mb-2">
+                              <h3 className="text-2xl font-bold text-white font-display group-hover:text-primary transition-colors">{project.title}</h3>
+                              <Link 
+                                  to={`/works/${project.id}`} 
+                                  className="w-10 h-10 rounded-full bg-white/5 text-white flex items-center justify-center border border-white/20 hover:bg-white hover:text-black hover:border-white transition-all duration-300 -mt-1 -mr-1"
+                              >
+                                  <ArrowUpRight size={18} />
+                              </Link>
+                          </div>
+                          <p className="text-textMuted text-sm line-clamp-2 leading-relaxed font-medium">{project.description}</p>
+                      </div>
+
+                      <div className="mt-auto pt-6 border-t border-white/10 group-hover:border-white/20 transition-colors flex flex-wrap items-center justify-between gap-4">
+                          <div className="flex flex-wrap gap-2">
+                              {project.techStack.slice(0, 5).map(tag => (
+                                  <span key={tag} className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1.5 bg-white/5 text-textMuted rounded-md border border-white/10 group-hover:border-white/20 transition-colors">
+                                      {tag}
+                                  </span>
+                              ))}
+                              {project.techStack.length > 5 && (
+                                  <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1.5 bg-white/5 text-textMuted rounded-md border border-white/10">+{project.techStack.length - 5}</span>
+                              )}
+                          </div>
+                          
+                          {/* Compact Actions for Card */}
+                          <div className="flex gap-2 shrink-0">
+                              {project.liveUrl && (
+                                  <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-xs font-bold text-primary border border-primary/30 px-3 py-1.5 rounded-lg hover:bg-primary hover:text-black transition-colors">
+                                      <Globe size={14} /> Live
+                                  </a>
+                              )}
+                              {project.repoUrl && (
+                                  <a href={project.repoUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-xs font-bold text-white border border-white/20 px-3 py-1.5 rounded-lg hover:bg-white hover:text-black transition-colors">
+                                      <Github size={14} /> Source
+                                  </a>
+                              )}
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+              </TiltCard>
+            </ScrollReveal>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Works;

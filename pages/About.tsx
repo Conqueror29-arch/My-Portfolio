@@ -1,0 +1,289 @@
+
+import React from 'react';
+import { Github, Linkedin, Download, GraduationCap, Award, ExternalLink, Trophy, Twitter, User } from 'lucide-react';
+import { EDUCATION, CERTIFICATIONS } from '../constants';
+import CardBackground from '../components/CardBackground';
+import ScrollReveal from '../components/ScrollReveal';
+import TiltCard from '../components/TiltCard';
+
+const About: React.FC = () => {
+  return (
+    <div className="w-full pt-28 pb-12 px-6">
+      <div className="max-w-6xl mx-auto">
+        
+        {/* Top Intro Text */}
+        <ScrollReveal animation="fade-down" duration={800}>
+            <div className="text-center mb-12">
+                <p className="text-textMuted text-sm md:text-base font-medium max-w-2xl mx-auto leading-relaxed opacity-80">
+                    Ready to connect and collaborate, drop me a line and let's turn ideas into reality!
+                </p>
+            </div>
+        </ScrollReveal>
+
+        {/* 
+            MOBILE ONLY HEADLINE 
+            - Visible only on mobile/tablet (hidden md)
+            - Centered text
+            - Single Line forced
+            - Order: 1 (Physically first in DOM)
+        */}
+        <div className="md:hidden mb-10 w-full overflow-hidden">
+             <ScrollReveal animation="fade-up" delay={100}>
+                 <div className="flex justify-center">
+                     <h1 className="text-[1.5rem] sm:text-4xl font-bold text-white font-display leading-tight flex flex-nowrap whitespace-nowrap items-center gap-2 justify-center tracking-tight">
+                         <span>I'm</span>
+                         <span className="relative inline-block group mx-1">
+                             <span className="absolute inset-0 w-full h-full bg-primary transform -rotate-2 translate-x-1 translate-y-1"></span>
+                             <span className="relative block bg-white text-black border-2 border-black px-2 py-0.5 transform -rotate-2 z-10">
+                                 Harishama
+                             </span>
+                         </span>
+                         <span>Chaurasia</span>
+                     </h1>
+                 </div>
+             </ScrollReveal>
+        </div>
+        
+        {/* Hero Grid Layout */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 mb-20 md:mb-24 items-stretch">
+          
+          {/* 
+              IMAGE CARD
+              - Mobile: Appears after Headline (Physically 2nd in DOM)
+              - Desktop: Left Column
+          */}
+          <div className="md:col-span-5 relative group flex flex-col h-full">
+            <ScrollReveal animation="slide-left" distance={50} className="h-full">
+              <TiltCard className="h-full" intensity={5}>
+                  <div className="w-full h-full rounded-[2rem] overflow-hidden relative bg-[#050505] border border-white/10 shadow-2xl transition-all duration-500 hover:border-white/20 min-h-[400px] md:min-h-0">
+                      <img 
+                        src="/harshiiii.png" 
+                        alt="Harishama" 
+                        className="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-700 filter grayscale-[10%] group-hover:grayscale-0" 
+                      />
+                      {/* Inner border for premium feel */}
+                      <div className="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-[2rem]"></div>
+                  </div>
+              </TiltCard>
+            </ScrollReveal>
+          </div>
+
+          {/* 
+              CONTENT COLUMN
+              - Mobile: Appears after Image
+              - Desktop: Right Column
+              - Added min-w-0 to prevent flex child overflow
+          */}
+          <div className="md:col-span-7 flex flex-col gap-8 justify-center min-w-0">
+             
+             {/* 
+                 DESKTOP ONLY HEADLINE 
+                 - Hidden on mobile
+                 - Width matches the About Me card (w-full)
+                 - Content CENTERED with smaller gap (gap-3) to prevent "too much gap" feel
+                 - Uses fluid typography clamp() to prevent overflow on any screen
+                 - Single Line (flex-nowrap)
+             */}
+             <div className="hidden md:block w-full max-w-full">
+                 <ScrollReveal animation="fade-up" delay={100}>
+                     <div>
+                         <h1 className="w-full max-w-full flex flex-row flex-nowrap justify-center items-center gap-3 font-bold text-white font-display leading-tight mb-4">
+                             <span className="shrink text-[clamp(1.5rem,2.5vw,3.5rem)]">I'm</span>
+                             
+                             <span className="relative inline-block group mx-2 shrink">
+                                 <span className="absolute inset-0 w-full h-full bg-primary transform -rotate-2 translate-x-1 translate-y-1"></span>
+                                 <span className="relative block bg-white text-black border-2 border-black px-3 py-1 transform -rotate-2 z-10 text-[clamp(1.5rem,2.5vw,3.5rem)] whitespace-nowrap">
+                                     Harishama
+                                 </span>
+                             </span>
+                             
+                             <span className="shrink text-[clamp(1.5rem,2.5vw,3.5rem)]">Chaurasia</span>
+                         </h1>
+                     </div>
+                 </ScrollReveal>
+             </div>
+
+             {/* Bio Card - Redesigned based on Reference */}
+             <ScrollReveal animation="blur-in" delay={200} className="flex-grow">
+               <div className="rounded-[2rem] border border-white/10 bg-[#080808] overflow-hidden shadow-2xl relative h-full flex flex-col">
+                   
+                   {/* Card Header */}
+                   <div className="bg-black/80 backdrop-blur-md border-b border-white/5 p-6 flex items-center justify-between">
+                       {/* Stylized ABOUT ME Header */}
+                       <div className="flex items-center gap-2 select-none">
+                           <span className="text-3xl font-black text-white font-display tracking-tight">ABOUT</span>
+                           <div className="relative mx-1">
+                               {/* Shadow */}
+                               <div className="absolute inset-0 bg-[#222] rounded transform translate-x-1 translate-y-1 rotate-3"></div>
+                               {/* Box */}
+                               <div className="relative bg-[#4ade80] px-2 py-0.5 rounded transform rotate-2 border border-black/10">
+                                   <span className="text-3xl font-black text-black font-display tracking-tight">ME</span>
+                               </div>
+                           </div>
+                           <span className="text-3xl font-black text-white font-display tracking-tight">.</span>
+                       </div>
+                       
+                       {/* Social Links - Right Aligned */}
+                       <div className="flex gap-2">
+                           <a href="https://github.com/Conqueror29-arch" target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg border border-white/10 text-textMuted hover:bg-white/10 hover:text-white transition-all bg-white/5">
+                               <Github size={16} />
+                           </a>
+                           <a href="https://www.linkedin.com/in/harishama-chaurasia-b4694735b/" target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg border border-white/10 text-textMuted hover:bg-white/10 hover:text-white transition-all bg-white/5">
+                               <Linkedin size={16} />
+                           </a>
+                           <a href="#" target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg border border-white/10 text-textMuted hover:bg-white/10 hover:text-white transition-all bg-white/5">
+                               <Twitter size={16} />
+                           </a>
+                       </div>
+                   </div>
+
+                   {/* Grid Content Body */}
+                   <div className="relative p-6 md:p-8 flex-grow flex flex-col justify-center">
+                       <CardBackground />
+                       
+                       <div className="relative z-10 space-y-4 text-textMuted text-sm md:text-base leading-relaxed font-medium text-justify">
+                           <p>
+                               Highly motivated B.Tech Computer Science student with a strong foundation in Data Science, Machine Learning, and AI-driven development. I specialize in building end-to-end ML workflows and intelligent features using modern AI models.
+                           </p>
+                           <p>
+                               Proficient in Python, React, and Cloud tools, I have experience developing AI-integrated products and intuitive dashboards. I am eager to contribute to AI/ML teams by delivering impactful, data-powered solutions.
+                           </p>
+                       </div>
+                   </div>
+               </div>
+             </ScrollReveal>
+
+             {/* Resume Button */}
+             <ScrollReveal animation="fade-up" delay={300}>
+               <a href="/hc-resume.pdf" download className="btn btn-white w-full rounded-full flex items-center justify-center gap-3 uppercase tracking-wider text-sm !py-4 shadow-[0_0_20px_-5px_rgba(255,255,255,0.1)]">
+                  Download Resume <Download size={18} />
+               </a>
+             </ScrollReveal>
+          </div>
+        </div>
+
+        {/* Education Section - Premium Monochrome Cards */}
+        <div className="mb-20">
+            <ScrollReveal animation="slide-left" distance={30}>
+              <h3 className="text-2xl md:text-3xl font-bold text-white flex items-center gap-3 font-display mb-8 md:mb-10 uppercase tracking-tight">
+                  <span className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white"><GraduationCap size={18} /></span>
+                  Education
+              </h3>
+            </ScrollReveal>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {EDUCATION.map((edu, idx) => (
+                    <ScrollReveal key={idx} animation="fade-up" delay={idx * 150} distance={40}>
+                      <TiltCard className="h-full">
+                          <div className="group relative bg-[#080808] border border-white/10 rounded-2xl p-6 hover:border-white/20 transition-all duration-500 flex flex-col h-full hover:shadow-[0_0_25px_-10px_rgba(255,255,255,0.1)]">
+                              
+                              <div className="relative z-10 mb-6 flex justify-between items-start">
+                                  <div className="bg-white/5 border border-white/10 rounded-lg p-2">
+                                      <GraduationCap size={20} className="text-white" />
+                                  </div>
+                                  <span className="text-[10px] font-bold text-textMuted uppercase tracking-widest border border-white/10 bg-black px-2 py-1 rounded">{edu.year}</span>
+                              </div>
+
+                              <div className="relative z-10 flex-grow">
+                                  <h4 className="text-lg font-bold text-white leading-tight mb-2">{edu.degree}</h4>
+                                  <p className="text-sm font-medium text-white/60 mb-4">{edu.institution}</p>
+                                  <div className="w-full h-px bg-white/5 mb-4"></div>
+                                  <p className="text-xs text-textMuted leading-relaxed">{edu.description}</p>
+                              </div>
+                          </div>
+                      </TiltCard>
+                    </ScrollReveal>
+                ))}
+            </div>
+        </div>
+
+        {/* Certifications Section */}
+        <div className="mb-20">
+            <ScrollReveal animation="slide-left" distance={30}>
+              <h3 className="text-2xl md:text-3xl font-bold text-white flex items-center gap-3 font-display mb-8 md:mb-10 uppercase tracking-tight">
+                  <span className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white"><Award size={18} /></span>
+                  Certifications
+              </h3>
+            </ScrollReveal>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {CERTIFICATIONS.map((cert, idx) => (
+                    <ScrollReveal key={idx} animation="blur-in" delay={idx * 100}>
+                      <TiltCard className="h-full">
+                          <div className="group relative bg-[#080808] border border-white/10 rounded-2xl overflow-hidden hover:border-white/20 transition-all duration-300 flex flex-col h-full">
+                              <CardBackground />
+                              
+                              <div className="relative z-10 p-6 flex items-start justify-between gap-4">
+                                  <div>
+                                      <span className="text-[10px] font-bold text-white/50 uppercase tracking-widest mb-2 block">Credentials</span>
+                                      {/* Removed group-hover:underline and associated classes */}
+                                      <h4 className="text-lg font-bold text-white leading-snug mb-1 transition-all">{cert.name}</h4>
+                                      <p className="text-xs text-textMuted mt-2">Issued by <span className="text-white">{cert.issuer}</span></p>
+                                  </div>
+                                  <a href={cert.link} className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:bg-white hover:text-black hover:border-white transition-all shrink-0">
+                                      <ExternalLink size={16} />
+                                  </a>
+                              </div>
+                          </div>
+                      </TiltCard>
+                    </ScrollReveal>
+                ))}
+            </div>
+        </div>
+
+        {/* Achievements Section */}
+        <div className="mb-20">
+            <ScrollReveal animation="slide-left" distance={30}>
+              <h3 className="text-2xl md:text-3xl font-bold text-white flex items-center gap-3 font-display mb-8 md:mb-10 uppercase tracking-tight">
+                  <span className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white"><Trophy size={18} /></span>
+                  Achievements
+              </h3>
+            </ScrollReveal>
+            <ScrollReveal animation="fade-up" delay={100}>
+                <div className="bg-[#080808] border border-white/10 rounded-3xl p-8 md:p-10 relative overflow-hidden group shadow-2xl">
+                    <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 blur-[80px] rounded-full pointer-events-none"></div>
+                    
+                    <div className="relative z-10 grid gap-8">
+                        <div className="flex gap-6 items-start">
+                            <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white shrink-0 shadow-inner">
+                                <Trophy size={20} />
+                            </div>
+                            <div>
+                                <h4 className="text-white font-bold text-lg mb-1">Sergeant Secretary</h4>
+                                <p className="text-textMuted text-sm leading-relaxed">AI-ML Departmental Society and Class Representative, supporting coordination and student activities.</p>
+                            </div>
+                        </div>
+
+                        <div className="w-full h-px bg-white/5"></div>
+
+                        <div className="flex gap-6 items-start">
+                            <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white shrink-0 shadow-inner">
+                                <Award size={20} />
+                            </div>
+                            <div>
+                                <h4 className="text-white font-bold text-lg mb-1">SIH College Pre-Qualifier</h4>
+                                <p className="text-textMuted text-sm leading-relaxed">Core Member & Co-Leader at Team Tegota, contributing to key technical initiatives.</p>
+                            </div>
+                        </div>
+                        
+                        <div className="w-full h-px bg-white/5"></div>
+
+                        <div className="flex gap-6 items-start">
+                            <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white shrink-0 shadow-inner">
+                                <GraduationCap size={20} />
+                            </div>
+                            <div>
+                                <h4 className="text-white font-bold text-lg mb-1">Google Arcade Champion</h4>
+                                <p className="text-textMuted text-sm leading-relaxed">Cohort 1 ’25. Recognized for excellence in Google Cloud skills and labs.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </ScrollReveal>
+        </div>
+
+      </div>
+    </div>
+  );
+};
+
+export default About;
