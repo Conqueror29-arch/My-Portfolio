@@ -12,10 +12,10 @@ import SpotlightCard from '../components/SpotlightCard';
 
 // Custom Stats Data to match the premium bar layout
 const PREMIUM_STATS = [
-    { label: 'CGPA', value: '8.3', icon: <Star size={20} className="text-yellow-400" fill="currentColor" /> },
-    { label: 'Live Projects', value: '03+', icon: <FolderGit2 size={20} className="text-primary" /> },
-    { label: 'Certifications', value: '04', icon: <Award size={20} className="text-purple-400" /> },
-    { label: 'Tech Stack', value: '15+', icon: <Layers size={20} className="text-blue-400" /> },
+    { label: 'CGPA', value: '8.3', icon: <Star size={22} className="text-yellow-400" /> },
+    { label: 'Live Projects', value: '3+', icon: <FolderGit2 size={22} className="text-cyan-400" /> },
+    { label: 'Certifications', value: '4', icon: <Award size={22} className="text-purple-400" /> },
+    { label: 'Tech Stack', value: '15+', icon: <Layers size={22} className="text-blue-400" /> },
 ];
 
 const HEADLINES = [
@@ -68,8 +68,8 @@ const Home: React.FC = () => {
   return (
     <div className="w-full">
       
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-10 px-6 min-h-[90vh] flex flex-col justify-center items-center text-center overflow-hidden">
+      {/* Hero Section - RESTORED APPLE STYLE */}
+      <section className="relative pt-32 pb-10 px-6 min-h-[85vh] flex flex-col justify-center items-center text-center overflow-hidden">
         
         {/* Floating Decoration Icons */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -102,7 +102,7 @@ const Home: React.FC = () => {
         <ScrollReveal animation="blur-in" duration={1000}>
           <div className="relative z-10 inline-flex mb-10 group">
             <div className="
-              relative flex items-center gap-3 pl-2 pr-6 py-2 rounded-full overflow-hidden
+              relative flex items-center gap-3 pl-4 pr-6 py-2 rounded-full overflow-hidden
               border border-white/20 bg-white/5
               shadow-[0_0_20px_-5px_rgba(255,255,255,0.1)]
               hover:shadow-[0_0_30px_-5px_rgba(255,255,255,0.2)]
@@ -114,9 +114,7 @@ const Home: React.FC = () => {
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-black/80"></div>
 
-                <div className="relative z-10 w-8 h-8 rounded-full bg-gradient-to-tr from-white/10 to-white/5 border border-white/10 flex items-center justify-center backdrop-blur-md">
-                  <span className="text-lg animate-hand-wave origin-[70%_70%]">👋</span>
-                </div>
+                <span className="relative z-10 text-xl animate-hand-wave origin-[70%_70%] select-none">👋</span>
                 
                 <span className="relative z-10 text-sm md:text-base font-bold text-white tracking-wide">
                    Harishama Welcome’s You!
@@ -159,7 +157,7 @@ const Home: React.FC = () => {
 
         {/* CTAs */}
         <ScrollReveal animation="blur-in" delay={300}>
-          <div className="relative z-10 flex flex-col sm:flex-row gap-5 mb-20 items-center justify-center">
+          <div className="relative z-10 flex flex-col sm:flex-row gap-5 mb-10 items-center justify-center">
             <Link to="/works" className="btn btn-white min-w-[180px] rounded-full">
               View Projects
             </Link>
@@ -174,7 +172,7 @@ const Home: React.FC = () => {
       <section className="px-4 md:px-6 relative z-10 pb-10 -mt-10">
         <div className="max-w-6xl mx-auto space-y-8">
             
-            {/* Infinite Keywords Marquee - Ultra Premium Slim Pill */}
+            {/* Infinite Keywords Marquee */}
             <ScrollReveal animation="fade-in" duration={1200}>
               <div className="relative w-full max-w-4xl mx-auto overflow-hidden border border-white/20 rounded-full bg-[#050505] shadow-[0_0_20px_rgba(0,0,0,0.5)] group h-12 flex items-center">
                    
@@ -193,7 +191,7 @@ const Home: React.FC = () => {
                    {/* Marquee Content */}
                    <div className="relative z-10 w-full flex items-center">
                        <Marquee 
-                          items={['Python', 'Next.js 15', 'React 19', 'Gemini API', 'NeonDB', 'Prisma', 'Docker', 'FastAPI', 'Tailwind', 'MongoDB', 'Clerk', 'Contact Me']} 
+                          items={['Java', 'Python', 'JavaScript', 'React.js', 'Next.js', 'Redis', 'Gemini API', 'FastAPI', 'MongoDB', 'Tailwind CSS', 'OpenAI API', 'ML Workflows', 'Prompt Engineering', 'Data Science', 'TypeScript']} 
                           direction="left" 
                           variant="transparent"
                        />
@@ -203,45 +201,44 @@ const Home: React.FC = () => {
 
             {/* Premium Stats Bar - Reference Image Style */}
             <ScrollReveal animation="fade-up" delay={200} distance={30}>
-                {/* Outer Rim */}
-                <div className="p-1 rounded-[2.5rem] bg-gradient-to-b from-white/10 via-white/5 to-black/50 shadow-[0_20px_50px_-10px_rgba(0,0,0,0.5)]">
-                    {/* Inner Container */}
-                    <div className="bg-[#080808] rounded-[2.3rem] px-8 py-8 md:px-12 md:py-8 flex flex-col md:flex-row items-center justify-between gap-8 md:gap-0 relative overflow-hidden group">
-                        
-                        {/* Background Effect */}
-                        <div className="absolute inset-0 bg-grid-small opacity-[0.03] pointer-events-none"></div>
-                        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-1 bg-gradient-to-r from-transparent via-white/20 to-transparent blur-sm"></div>
-
-                        {PREMIUM_STATS.map((stat, idx) => (
-                            <React.Fragment key={idx}>
-                                <div className="flex items-center gap-5 w-full md:w-auto justify-center md:justify-start group/item">
-                                    {/* Icon Box */}
-                                    <div className="w-12 h-12 rounded-2xl bg-[#111] border border-white/10 flex items-center justify-center shadow-inner group-hover/item:border-white/20 group-hover/item:bg-[#161616] transition-all duration-300">
-                                        {stat.icon}
-                                    </div>
-                                    
-                                    {/* Text Info */}
-                                    <div className="flex flex-col">
-                                        <div className="flex items-baseline gap-1">
-                                            <span className="text-3xl md:text-4xl font-bold text-white font-display tracking-tight leading-none">
-                                                <CountUp end={parseFloat(stat.value)} suffix={stat.value.includes('+') ? '+' : ''} />
+                <div className="max-w-5xl mx-auto px-2">
+                    {/* The Bar */}
+                    <div className="bg-[#030303] border border-white/10 rounded-[2.5rem] p-2 shadow-2xl relative">
+                        {/* Inner Content */}
+                        <div className="bg-[#080808] rounded-[2rem] border border-white/5 px-6 py-6 md:px-10 md:py-6 flex flex-col md:flex-row items-center justify-between gap-6 md:gap-0 relative z-10">
+                             
+                             {PREMIUM_STATS.map((stat, idx) => (
+                                <React.Fragment key={idx}>
+                                    <div className="flex items-center gap-5 w-full md:w-auto justify-center md:justify-start">
+                                        {/* Icon Box */}
+                                        <div className="w-14 h-14 rounded-2xl bg-[#121212] border border-white/10 flex items-center justify-center shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]">
+                                            {stat.icon}
+                                        </div>
+                                        
+                                        <div className="flex flex-col text-left">
+                                            <span className="text-3xl font-bold text-white font-display leading-none mb-1">
+                                                <CountUp 
+                                                    end={parseFloat(stat.value)} 
+                                                    suffix={stat.value.includes('+') ? '+' : ''} 
+                                                    decimals={stat.value.includes('.') ? 1 : 0}
+                                                />
+                                            </span>
+                                            <span className="text-[10px] font-bold text-textMuted uppercase tracking-widest">
+                                                {stat.label}
                                             </span>
                                         </div>
-                                        <span className="text-xs font-bold text-textMuted uppercase tracking-wider">{stat.label}</span>
                                     </div>
-                                </div>
-                                
-                                {/* Vertical Divider (Desktop Only) */}
-                                {idx < PREMIUM_STATS.length - 1 && (
-                                    <div className="hidden md:block w-px h-12 bg-gradient-to-b from-transparent via-white/10 to-transparent"></div>
-                                )}
-                                
-                                {/* Horizontal Divider (Mobile Only) */}
-                                {idx < PREMIUM_STATS.length - 1 && (
-                                    <div className="md:hidden w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
-                                )}
-                            </React.Fragment>
-                        ))}
+
+                                    {/* Divider */}
+                                    {idx < PREMIUM_STATS.length - 1 && (
+                                        <div className="hidden md:block w-px h-10 bg-white/10"></div>
+                                    )}
+                                    {idx < PREMIUM_STATS.length - 1 && (
+                                        <div className="md:hidden w-full max-w-[120px] h-px bg-white/10"></div>
+                                    )}
+                                </React.Fragment>
+                             ))}
+                        </div>
                     </div>
                 </div>
             </ScrollReveal>

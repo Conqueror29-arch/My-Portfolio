@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 type AnimationType = 'fade-up' | 'fade-down' | 'fade-in' | 'slide-left' | 'slide-right' | 'blur-in' | 'scale-up' | 'rotate-in' | 'flip-up';
 
 interface ScrollRevealProps {
-  children: React.ReactNode;
+  children: React.Node;
   animation?: AnimationType;
   duration?: number;
   delay?: number;
@@ -12,7 +12,7 @@ interface ScrollRevealProps {
   threshold?: number;
   className?: string;
   enableBlur?: boolean;
-  repeat?: boolean; // If true, animation triggers every time element enters viewport
+  repeat?: boolean;
 }
 
 const ScrollReveal: React.FC<ScrollRevealProps> = ({
@@ -21,10 +21,10 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
   duration = 800,
   delay = 0,
   distance = 30,
-  threshold = 0.1,
+  threshold = 0.01,
   className = '',
   enableBlur = true,
-  repeat = false, // Changed default to false for better performance and reliability
+  repeat = false,
 }) => {
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -33,24 +33,31 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
     const element = ref.current;
     if (!element) return;
 
-    // Safety fallback: If IntersectionObserver is not supported or fails, show content.
+    // Safety timeout: Ensure content is visible eventually
+    const safety = setTimeout(() => {
+      setIsVisible(true);
+    }, 2000 + delay);
+
     if (!('IntersectionObserver' in window)) {
-        setIsVisible(true);
-        return;
+      setIsVisible(true);
+      return () => clearTimeout(safety);
     }
 
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
-          if (!repeat) observer.unobserve(element);
+          if (!repeat) {
+            observer.unobserve(element);
+            clearTimeout(safety);
+          }
         } else if (repeat) {
           setIsVisible(false);
         }
       },
       {
-        threshold: 0, // Trigger as soon as any pixel is visible
-        rootMargin: '0px 0px 0px 0px', // Removed negative margin to ensure triggering
+        threshold: threshold,
+        rootMargin: '100px 0px', // Start early for better experience
       }
     );
 
@@ -58,8 +65,9 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
 
     return () => {
       if (element) observer.unobserve(element);
+      clearTimeout(safety);
     };
-  }, [threshold, repeat]);
+  }, [threshold, repeat, delay]);
 
   const getTransform = () => {
     if (isVisible) return 'translate3d(0, 0, 0) scale(1) rotate(0deg)';
@@ -74,24 +82,14 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
       case 'slide-right':
         return `translate3d(${distance}px, 0, 0)`;
       case 'scale-up':
-        return `scale(0.8)`;
+        return `scale(0.9)`;
       case 'rotate-in':
-        return `rotate(-5deg) scale(0.9)`;
+        return `rotate(-5deg) scale(0.95)`;
       case 'flip-up':
         return `perspective(1000px) rotateX(20deg) translate3d(0, ${distance}px, 0)`;
-      case 'blur-in':
-      case 'fade-in':
       default:
         return 'translate3d(0, 0, 0)';
     }
-  };
-
-  const getOpacity = () => (isVisible ? 1 : 0);
-  
-  const getBlur = () => {
-      if (!enableBlur) return 'none';
-      if (animation === 'blur-in') return isVisible ? 'blur(0)' : 'blur(10px)';
-      return isVisible ? 'blur(0)' : 'blur(4px)';
   };
 
   return (
@@ -101,9 +99,9 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
       style={{
         transition: `all ${duration}ms cubic-bezier(0.2, 0.8, 0.2, 1)`,
         transitionDelay: `${delay}ms`,
-        opacity: getOpacity(),
+        opacity: isVisible ? 1 : 0,
         transform: getTransform(),
-        filter: getBlur(),
+        filter: enableBlur ? (isVisible ? 'blur(0px)' : 'blur(8px)') : 'none',
         willChange: 'opacity, transform, filter',
       }}
     >

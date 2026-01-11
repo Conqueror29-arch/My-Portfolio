@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useRef } from 'react';
 
 interface CountUpProps {
@@ -5,10 +6,11 @@ interface CountUpProps {
   duration?: number;
   suffix?: string;
   prefix?: string;
+  decimals?: number;
 }
 
-const CountUp: React.FC<CountUpProps> = ({ end, duration = 2000, suffix = '', prefix = '' }) => {
-  const [count, setCount] = useState(0);
+const CountUp: React.FC<CountUpProps> = ({ end, duration = 2000, suffix = '', prefix = '', decimals = 0 }) => {
+  const [count, setCount] = useState<string | number>(0);
   const elementRef = useRef<HTMLSpanElement>(null);
   const hasAnimated = useRef(false);
 
@@ -30,10 +32,13 @@ const CountUp: React.FC<CountUpProps> = ({ end, duration = 2000, suffix = '', pr
               const percentage = progress / duration;
               // Ease out quart function for smooth landing
               const easeOutQuart = 1 - Math.pow(1 - percentage, 4);
-              setCount(Math.floor(easeOutQuart * end));
+              const currentVal = easeOutQuart * end;
+              
+              setCount(decimals > 0 ? currentVal.toFixed(decimals) : Math.floor(currentVal));
+              
               animationFrameId = requestAnimationFrame(animate);
             } else {
-              setCount(end);
+              setCount(decimals > 0 ? end.toFixed(decimals) : end);
             }
           };
 
@@ -52,7 +57,7 @@ const CountUp: React.FC<CountUpProps> = ({ end, duration = 2000, suffix = '', pr
         observer.unobserve(elementRef.current);
       }
     };
-  }, [end, duration]);
+  }, [end, duration, decimals]);
 
   return <span ref={elementRef}>{prefix}{count}{suffix}</span>;
 };

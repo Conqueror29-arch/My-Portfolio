@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { ArrowUpRight, FolderGit2, Globe, Github } from 'lucide-react';
 import { PROJECTS } from '../constants';
@@ -30,20 +29,18 @@ const Works: React.FC = () => {
           {PROJECTS.map((project, idx) => (
             <ScrollReveal key={project.id} animation={idx % 2 === 0 ? 'slide-left' : 'slide-right'} delay={idx * 100} distance={50}>
               <TiltCard className="h-full">
-                  <div className="group relative rounded-3xl bg-[#050505] border border-white/20 overflow-hidden hover:border-white/40 transition-all duration-500 hover:shadow-[0_0_40px_-10px_rgba(255,255,255,0.15)] flex flex-col h-full shadow-[0_0_20px_-10px_rgba(255,255,255,0.08)]">
+                  <div className="group relative rounded-[2rem] bg-[#050505] border border-white/20 overflow-hidden hover:border-white/40 transition-all duration-500 hover:shadow-[0_0_40px_-10px_rgba(255,255,255,0.15)] flex flex-col h-full shadow-[0_0_20px_-10px_rgba(255,255,255,0.08)]">
                     
                     <CardBackground />
 
                     {/* Window Header Style Image Container */}
                     <div className="relative h-64 w-full overflow-hidden z-10 border-b border-white/10 bg-[#0A0A0A] group-hover:border-white/20 transition-colors">
-                      {/* Window Controls Decoration */}
                       <div className="absolute top-4 left-4 z-20 flex gap-2">
                           <div className="w-3 h-3 rounded-full bg-red-500/20 border border-red-500/50"></div>
                           <div className="w-3 h-3 rounded-full bg-yellow-500/20 border border-yellow-500/50"></div>
                           <div className="w-3 h-3 rounded-full bg-green-500/20 border border-green-500/50"></div>
                       </div>
 
-                      {/* Year Badge */}
                       <div className="absolute top-4 right-4 z-20 bg-black/60 backdrop-blur-md px-3 py-1 rounded-lg text-xs font-bold text-white border border-white/10 shadow-lg">
                           {project.year}
                       </div>
@@ -60,7 +57,7 @@ const Works: React.FC = () => {
                     <div className="p-8 relative z-10 flex flex-col flex-grow bg-gradient-to-b from-[#050505] to-transparent">
                       <div className="mb-6">
                           <div className="flex justify-between items-start mb-2">
-                              <h3 className="text-2xl font-bold text-white font-display group-hover:text-primary transition-colors">{project.title}</h3>
+                              <h3 className="text-2xl font-bold text-white font-display group-hover:text-primary transition-colors tracking-tight">{project.title}</h3>
                               <Link 
                                   to={`/works/${project.id}`} 
                                   className="w-10 h-10 rounded-full bg-white/5 text-white flex items-center justify-center border border-white/20 hover:bg-white hover:text-black hover:border-white transition-all duration-300 -mt-1 -mr-1"
@@ -83,7 +80,6 @@ const Works: React.FC = () => {
                               )}
                           </div>
                           
-                          {/* Compact Actions for Card */}
                           <div className="flex gap-2 shrink-0">
                               {project.liveUrl && (
                                   <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-xs font-bold text-primary border border-primary/30 px-3 py-1.5 rounded-lg hover:bg-primary hover:text-black transition-colors">

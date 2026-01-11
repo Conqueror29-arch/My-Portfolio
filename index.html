@@ -16,6 +16,16 @@
     <meta property="og:image" content="/og-harshi.png" />
     <meta property="og:url" content="https://imrja8.github.io" />
 
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-334SWQR8MC"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-334SWQR8MC');
+    </script>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script>
@@ -31,235 +41,152 @@
               background: '#000000', 
               surface: '#000000',
               surfaceHighlight: '#121212',
-              
-              primary: '#22d3ee',   // Cyan-400
-              secondary: '#4ade80', // Green-400
-              accent: '#38bdf8',    // Sky-400
-              
+              primary: '#22d3ee',
+              secondary: '#4ade80',
+              accent: '#38bdf8',
               textMain: '#ffffff',
               textMuted: '#9ca3af',
               border: '#27272a',
-            },
-            boxShadow: {
-              'glow-primary': '0 0 20px -5px rgba(34, 211, 238, 0.5)',
-              'glow-secondary': '0 0 20px -5px rgba(74, 222, 128, 0.5)',
-            },
-            animation: {
-              'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-              'float': 'float 6s ease-in-out infinite',
-              'hand-wave': 'handWave 2.5s ease-in-out infinite',
-              'beam-horz': 'beamHorz 7s linear infinite',
-              'beam-vert': 'beamVert 7s linear infinite',
-              'fade-in-out': 'fadeInOut 4s ease-in-out infinite',
-              'pop-loop': 'popLoop 3s ease-in-out infinite',
-            },
-            keyframes: {
-              float: {
-                '0%, 100%': { transform: 'translateY(0)' },
-                '50%': { transform: 'translateY(-10px)' },
-              },
-              handWave: {
-                '0%': { transform: 'rotate(0deg)' },
-                '10%': { transform: 'rotate(14deg)' },
-                '20%': { transform: 'rotate(-8deg)' },
-                '30%': { transform: 'rotate(14deg)' },
-                '40%': { transform: 'rotate(-4deg)' },
-                '50%': { transform: 'rotate(10deg)' },
-                '60%': { transform: 'rotate(0deg)' },
-                '100%': { transform: 'rotate(0deg)' },
-              },
-              beamHorz: {
-                '0%': { left: '-30%', opacity: '0' },
-                '10%': { opacity: '1' },
-                '90%': { opacity: '1' },
-                '100%': { left: '130%', opacity: '0' },
-              },
-              beamVert: {
-                '0%': { top: '-30%', opacity: '0' },
-                '10%': { opacity: '1' },
-                '90%': { opacity: '1' },
-                '100%': { top: '130%', opacity: '0' },
-              },
-              fadeInOut: {
-                '0%, 100%': { opacity: '0' },
-                '50%': { opacity: '0.1' }, 
-              },
-              popLoop: {
-                '0%': { transform: 'scale(1)' },
-                '15%': { transform: 'scale(1.3)' },
-                '30%': { transform: 'scale(1)' },
-                '100%': { transform: 'scale(1)' },
-              }
             }
           }
         }
       }
     </script>
     <style>
-      :root {
-        --primary: #22d3ee;
-        --secondary: #4ade80;
-      }
-
-      html, body {
-        background-color: #000000;
-        color: #ffffff;
-        overflow-x: hidden;
-        cursor: none;
+      :root { 
+        --primary: #22d3ee; 
+        --secondary: #4ade80; 
       }
       
-      a, button, input, select, textarea, .cursor-pointer {
-        cursor: none !important;
+      html, body { 
+        background-color: #000000; 
+        color: #ffffff; 
+        overflow-x: hidden; 
+      }
+      
+      a, button, input, textarea, .cursor-pointer { 
+        cursor: pointer; 
       }
 
-      ::-webkit-scrollbar {
-        width: 6px;
-      }
-      ::-webkit-scrollbar-track {
-        background: #000000; 
-      }
-      ::-webkit-scrollbar-thumb {
-        background: #333; 
-        border-radius: 10px;
-      }
-      ::-webkit-scrollbar-thumb:hover {
-        background: #555; 
-      }
+      ::-webkit-scrollbar { width: 6px; }
+      ::-webkit-scrollbar-track { background: #000000; }
+      ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
 
-      /* Base Button */
+      /* --- Premium Clicky Button Styles --- */
       .btn {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        gap: 0.5rem;
-        padding: 0.95em 2em;
-        font-size: 1.05rem;
+        gap: 0.75rem;
+        padding: 0.85em 2em;
+        font-size: 0.95rem;
         font-weight: 700;
-        border-radius: 12px;
-        cursor: none;
-        background: #000000; /* Changed from transparent to black for solid fill */
+        border-radius: 14px;
+        background: transparent;
         color: var(--primary);
-        border: 2px solid var(--primary);
-        transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+        border: 2px solid rgba(34, 211, 238, 0.3);
+        transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
         text-decoration: none;
         position: relative;
         overflow: hidden;
         z-index: 1;
+        white-space: nowrap;
       }
 
       .btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 10px 20px -5px rgba(34, 211, 238, 0.4);
+        transform: translateY(-2px) scale(0.98);
+        border-color: var(--primary);
+        box-shadow: 0 5px 20px rgba(34, 211, 238, 0.3);
       }
 
-      /* Filled Variant */
+      .btn:active {
+        transform: translateY(1px) scale(0.94);
+        transition-duration: 0.1s;
+      }
+
       .btn-filled {
         background: var(--primary);
         color: #000000;
         border: 2px solid var(--primary);
       }
+
       .btn-filled:hover {
-        background: #22d3ee;
-        color: #000000;
-        box-shadow: 0 0 20px rgba(34, 211, 238, 0.6);
+        background: #fff;
+        border-color: #fff;
+        color: #000;
+        box-shadow: 0 0 30px rgba(34, 211, 238, 0.5);
       }
 
-      /* White Variant */
       .btn-white {
         background: #ffffff;
         color: #000000;
         border: 2px solid #ffffff;
       }
+
       .btn-white:hover {
-        box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
-        transform: translateY(-2px);
-      }
-
-      /* Cyber Button - New Style */
-      .btn-cyber {
-        background: #000000; /* Changed from transparent to black */
+        background: #000;
         color: #fff;
-        border: 1px solid rgba(255,255,255,0.2);
-        position: relative;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        font-size: 0.9rem;
-        clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%);
-      }
-      
-      .btn-cyber::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(34, 211, 238, 0.2), transparent);
-        transition: 0.5s;
-        z-index: -1;
-      }
-      
-      .btn-cyber:hover::before {
-        left: 100%;
-      }
-      
-      .btn-cyber:hover {
-        border-color: var(--primary);
-        color: var(--primary);
-        text-shadow: 0 0 8px rgba(34, 211, 238, 0.8);
+        border-color: rgba(255, 255, 255, 0.5);
+        box-shadow: 0 10px 25px -5px rgba(255, 255, 255, 0.3);
       }
 
-      /* Glitch Effect on Hover */
-      .btn-glitch {
-        position: relative;
-        overflow: hidden;
+      /* --- Keyframe Animations for CardBackground --- */
+      @keyframes beam-horz {
+        0% { transform: translateX(-100%); opacity: 0; }
+        5% { opacity: 1; }
+        95% { opacity: 1; }
+        100% { transform: translateX(2000%); opacity: 0; }
       }
       
-      .btn-glitch::after {
-        content: '';
-        display: block;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: var(--primary);
-        transform: translateX(-100%);
-        z-index: -1;
-        transition: transform 0.3s ease;
-      }
-      
-      .btn-glitch:hover {
-        color: black;
-        border-color: var(--primary);
-      }
-      
-      .btn-glitch:hover::after {
-        transform: translateX(0);
+      @keyframes beam-vert {
+        0% { transform: translateY(-100%); opacity: 0; }
+        5% { opacity: 1; }
+        95% { opacity: 1; }
+        100% { transform: translateY(2000%); opacity: 0; }
       }
 
-      /* Text Gradient Utilities */
-      .text-gradient-primary {
-         background: linear-gradient(to right, #22d3ee, #38bdf8);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+      @keyframes fade-in-out {
+        0%, 100% { opacity: 0; transform: scale(0.7); filter: blur(2px); }
+        50% { opacity: 0.09; transform: scale(1.1); filter: blur(0px); }
       }
 
-      .text-gradient-gold {
-         background: linear-gradient(to right, #fbbf24, #d97706);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+      .animate-beam-horz {
+        animation: beam-horz 12s linear infinite;
       }
 
+      .animate-beam-vert {
+        animation: beam-vert 12s linear infinite;
+      }
+
+      .animate-fade-in-out {
+        animation: fade-in-out 5s ease-in-out infinite;
+      }
+
+      @keyframes hand-wave {
+        0% { transform: rotate(0deg); }
+        10% { transform: rotate(14deg); }
+        20% { transform: rotate(-8deg); }
+        30% { transform: rotate(14deg); }
+        40% { transform: rotate(-4deg); }
+        50% { transform: rotate(10deg); }
+        60% { transform: rotate(0deg); }
+        100% { transform: rotate(0deg); }
+      }
+      .animate-hand-wave {
+        animation: hand-wave 2s infinite;
+        display: inline-block;
+      }
     </style>
   <script type="importmap">
 {
   "imports": {
-    "react-router-dom": "https://esm.sh/react-router-dom@^7.11.0",
-    "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
-    "react/": "https://esm.sh/react@^19.2.3/",
-    "react": "https://esm.sh/react@^19.2.3",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.3/"
+    "react": "https://esm.sh/react@19.0.0",
+    "react-dom": "https://esm.sh/react-dom@19.0.0",
+    "react-dom/client": "https://esm.sh/react-dom@19.0.0/client",
+    "react-router-dom": "https://esm.sh/react-router-dom@6.28.0?external=react,react-dom",
+    "lucide-react": "https://esm.sh/lucide-react@0.460.0?external=react,react-dom",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/"
   }
 }
 </script>

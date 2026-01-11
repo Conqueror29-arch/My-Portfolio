@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { HashRouter, Routes, Route, useLocation, Outlet } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -20,82 +20,62 @@ import ShootingStars from './components/ShootingStars';
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
-
   React.useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
-
   return null;
 };
 
 const PageTitleUpdater = () => {
   const location = useLocation();
-
   React.useEffect(() => {
     const path = location.pathname;
     let title = 'My Portfolio | Harishama';
-
-    if (path === '/') {
-      title = 'My Portfolio | Harishama';
-    } else if (path.includes('/about')) {
-      title = 'About | Harishama';
-    } else if (path.includes('/skills')) {
-      title = 'Skills | Harishama';
-    } else if (path.includes('/works')) {
-      title = 'Works | Harishama';
-    } else if (path.includes('/contact')) {
-      title = 'Contact | Harishama';
-    } else if (path.includes('/privacy-policy')) {
-      title = 'Privacy Policy | Harishama';
-    } else if (path.includes('/terms-of-use')) {
-      title = 'Terms of Use | Harishama';
-    }
-
+    if (path === '/') title = 'My Portfolio | Harishama';
+    else if (path.startsWith('/about')) title = 'About | Harishama';
+    else if (path.startsWith('/skills')) title = 'Skills | Harishama';
+    else if (path.startsWith('/works')) title = 'Works | Harishama';
+    else if (path.startsWith('/contact')) title = 'Contact | Harishama';
+    else if (path.startsWith('/privacy-policy')) title = 'Privacy Policy | Harishama';
+    else if (path.startsWith('/terms-of-use')) title = 'Terms of Use | Harishama';
+    else title = '404 | Page Not Found';
     document.title = title;
   }, [location]);
-
   return null;
 };
 
-// Layout component
-const Layout = () => {
-  return (
-    <>
-      <Navbar />
-      <main className="flex-grow">
-        <Outlet />
-      </main>
-      <CTA />
-      <Footer />
-    </>
-  );
-};
+const Layout = () => (
+  <>
+    <Navbar />
+    <main className="flex-grow">
+      <Outlet />
+    </main>
+    <CTA />
+    <Footer />
+  </>
+);
 
 const App: React.FC = () => {
   return (
-    <HashRouter>
+    <HashRouter
+      future={{
+        v7_startTransition: true,
+        v7_relativeSplatPath: true,
+      }}
+    >
       <Preloader />
       <ScrollToTop />
       <PageTitleUpdater />
       
-      {/* 
-         The Background component sits at z-[-1]
-      */}
-      <div className="min-h-screen text-textMain selection:bg-accent selection:text-white flex flex-col font-sans relative overflow-x-hidden">
-        
-        {/* Background Layer */}
+      <div className="min-h-screen text-textMain selection:bg-accent selection:text-white flex flex-col font-sans relative overflow-x-hidden bg-black">
+        {/* Visual Background Layers */}
         <Background />
-        
-        {/* Universal Shooting Stars */}
         <ShootingStars />
-        
-        {/* Cursor Overlay */}
         <BackgroundCurves />
         
-        {/* Content Layer: Z-Index 10 ensures it's above the background canvas */}
+        {/* Main Application Content */}
         <div className="relative z-10 flex flex-col min-h-screen">
           <Routes>
-            {/* Main Layout Routes */}
             <Route element={<Layout />}>
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
@@ -106,12 +86,9 @@ const App: React.FC = () => {
               <Route path="/privacy-policy" element={<PrivacyPolicy />} />
               <Route path="/terms-of-use" element={<TermsOfUse />} />
             </Route>
-
-            {/* Standalone Routes */}
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
-        
       </div>
     </HashRouter>
   );

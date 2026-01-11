@@ -111,9 +111,9 @@ const CardBackground: React.FC<CardBackgroundProps> = ({ hideBeams = false }) =>
   return (
     <div ref={containerRef} className="absolute inset-0 overflow-hidden pointer-events-none rounded-inherit z-0">
       
-      {/* 1. Base Grid Pattern - 20px fixed size - Opacity 0.04 */}
+      {/* 1. Base Grid Pattern - 20px fixed size - Reduced Opacity for subtleness */}
       <div 
-        className="absolute inset-0 opacity-[0.04]"
+        className="absolute inset-0 opacity-[0.03]"
         style={{
             backgroundImage: `
               linear-gradient(to right, #ffffff 1px, transparent 1px),
@@ -125,7 +125,7 @@ const CardBackground: React.FC<CardBackgroundProps> = ({ hideBeams = false }) =>
         }}
       ></div>
 
-      {/* 2. Squares - White for Premium Look */}
+      {/* 2. Squares - White for Premium Look - Reduced Shadow Opacity */}
       {squares.map((sq) => (
         <div 
             key={sq.id}
@@ -138,8 +138,8 @@ const CardBackground: React.FC<CardBackgroundProps> = ({ hideBeams = false }) =>
                 animationDelay: sq.delay,
                 animationDuration: sq.duration,
                 opacity: 0, 
-                // Clean white look
-                boxShadow: 'inset 0 0 6px rgba(255,255,255,0.4)',
+                // Significantly reduced inner shadow opacity to prevent obscuring text
+                boxShadow: 'inset 0 0 6px rgba(255,255,255,0.05)',
                 borderRadius: '1px'
             }}
         />

@@ -1,16 +1,16 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Linkedin, Github, Heart, Code, Twitter } from 'lucide-react';
+import { Linkedin, Github, Heart, Code } from 'lucide-react';
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="w-full bg-[#050505] border-t border-white/10 pt-10 pb-6 mt-12 relative z-50">
+    <footer className="w-full bg-[#050505] border-t border-white/10 pt-10 pb-10 mt-12 relative z-50">
       <div className="max-w-7xl mx-auto px-6">
         
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-10">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           <div className="md:col-span-2">
             <h2 className="text-2xl font-bold text-white mb-4 tracking-tight font-display">Harishama.</h2>
             <p className="text-textMuted text-sm mb-6 leading-relaxed max-w-sm">
@@ -20,8 +20,8 @@ const Footer: React.FC = () => {
               <a href="https://github.com/Conqueror29-arch" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-white/5 text-textMuted hover:bg-white hover:text-black transition-all border border-white/5">
                 <Github size={18} />
               </a>
-              <a href="#" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-white/5 text-textMuted hover:bg-white hover:text-black transition-all border border-white/5">
-                <Twitter size={18} />
+              <a href="https://leetcode.com/u/o9K2o96mc9/" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-white/5 text-textMuted hover:bg-white hover:text-black transition-all border border-white/5" title="LeetCode">
+                <Code size={18} />
               </a>
               <a href="https://www.linkedin.com/in/harishama-chaurasia-b4694735b/" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-white/5 text-textMuted hover:bg-white hover:text-black transition-all border border-white/5">
                 <Linkedin size={18} />
@@ -51,7 +51,7 @@ const Footer: React.FC = () => {
         </div>
 
         {/* Animated Collider Line */}
-        <div className="relative h-px w-full mb-6">
+        <div className="relative h-px w-full mb-8">
            <style>{`
              @keyframes collisionLeft {
                0%, 100% { width: 0%; opacity: 0; }
@@ -76,10 +76,10 @@ const Footer: React.FC = () => {
         </div>
 
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-textMuted text-xs">© 2026 Tegota. All rights reserved.</p>
-          <div className="flex items-center gap-1 text-textMuted text-xs">
+          <p className="text-white text-base font-bold tracking-wide">© 2026 Tegota. All rights reserved.</p>
+          <div className="flex items-center gap-2 text-white text-base font-bold tracking-wide">
             <span>Designed & Built by Harishama</span>
-            <Heart className="w-3 h-3 text-cyan-400 fill-cyan-400 animate-pulse" />
+            <Heart className="w-5 h-5 text-cyan-400 fill-cyan-400 animate-pulse" />
           </div>
         </div>
       </div>

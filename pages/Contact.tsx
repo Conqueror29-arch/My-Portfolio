@@ -31,11 +31,30 @@ const Contact: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setFormStatus('sending');
-    setTimeout(() => {
-        setFormStatus('success');
-        setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+    
+    try {
+        const response = await fetch("https://formspree.io/f/maqqwker", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify(formData)
+        });
+
+        if (response.ok) {
+            setFormStatus('success');
+            setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+            setTimeout(() => setFormStatus('idle'), 5000);
+        } else {
+            setFormStatus('error');
+            setTimeout(() => setFormStatus('idle'), 5000);
+        }
+    } catch (error) {
+        console.error("Submission error:", error);
+        setFormStatus('error');
         setTimeout(() => setFormStatus('idle'), 5000);
-    }, 2000);
+    }
   };
 
   return (

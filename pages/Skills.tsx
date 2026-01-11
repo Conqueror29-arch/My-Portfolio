@@ -40,21 +40,17 @@ const Skills: React.FC = () => {
             </div>
         </ScrollReveal>
 
-        {/* Skills Grid - Main Categories using TiltCard */}
+        {/* Skills Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-24">
             {SKILLS.map((skill, idx) => (
                 <ScrollReveal key={idx} animation="blur-in" delay={idx * 100}>
                     <TiltCard className="h-full">
                         <div className="relative group rounded-3xl bg-[#050505] border border-white/20 overflow-hidden hover:border-white/30 transition-all duration-500 hover:shadow-[0_0_30px_-10px_rgba(255,255,255,0.08)] flex flex-col p-8 h-full shadow-[0_0_15px_-5px_rgba(255,255,255,0.05)]">
                             <CardBackground />
-
                             <div className="relative z-10">
-                                {/* Icon Box - Changed shadow/border from primary to white */}
                                 <div className="w-14 h-14 bg-gradient-to-br from-white/10 to-transparent rounded-2xl border border-white/10 flex items-center justify-center text-white mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-lg group-hover:shadow-white/10 group-hover:border-white/30">
                                     {React.cloneElement(skill.icon as React.ReactElement<any>, { size: 28 })}
                                 </div>
-                                
-                                {/* Changed hover:text-primary to white for a cleaner look */}
                                 <h3 className="text-2xl font-bold text-white mb-3 font-display tracking-tight transition-colors">{skill.title}</h3>
                                 <p className="text-textMuted text-sm leading-relaxed font-medium opacity-80 group-hover:opacity-100 transition-opacity">
                                     {skill.desc}
@@ -66,7 +62,7 @@ const Skills: React.FC = () => {
             ))}
         </div>
 
-        {/* Tools I Use Section using SpotlightCard */}
+        {/* Tools I Use Section */}
         <div className="mb-20">
             <ScrollReveal animation="slide-right" distance={40}>
                 <div className="flex items-center gap-4 mb-10">
@@ -78,24 +74,24 @@ const Skills: React.FC = () => {
                 </div>
             </ScrollReveal>
             
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
                 {TOOLS_LIST.map((tool, idx) => (
                     <ScrollReveal key={idx} animation="scale-up" delay={idx * 50}>
-                        <SpotlightCard className="h-full border border-white/20 shadow-md shadow-white/5" spotlightColor="rgba(255, 255, 255, 0.15)">
-                            <div className="group relative bg-[#0A0A0A] p-4 rounded-xl flex flex-col items-center justify-center gap-3 transition-all duration-300 h-full">
-                                <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-xl"></div>
+                        <TiltCard className="h-full">
+                            <div className="group relative bg-[#050505] border border-white/20 p-6 rounded-2xl flex flex-col items-center justify-center gap-4 transition-all duration-500 h-full overflow-hidden hover:border-white/40 shadow-[0_0_20px_-5px_rgba(255,255,255,0.05)] hover:shadow-[0_0_25px_-5px_rgba(255,255,255,0.1)]">
+                                <CardBackground />
                                 
-                                <div className="relative z-10 h-8 w-8 flex items-center justify-center">
+                                <div className="relative z-10 h-10 w-10 flex items-center justify-center">
                                     {tool.logo ? (
-                                        <img src={tool.logo} alt={tool.name} className="w-full h-full object-contain filter drop-shadow-md group-hover:scale-110 transition-transform" />
+                                        <img src={tool.logo} alt={tool.name} className="w-full h-full object-contain filter drop-shadow-md group-hover:scale-110 transition-transform duration-300" />
                                     ) : (
                                         <div className="w-full h-full flex items-center justify-center bg-white/10 rounded-full font-bold text-xs">{tool.name[0]}</div>
                                     )}
                                 </div>
                                 
-                                <span className="text-sm font-bold text-white relative z-10">{tool.name}</span>
+                                <span className="text-sm font-bold text-white relative z-10 tracking-tight">{tool.name}</span>
                             </div>
-                        </SpotlightCard>
+                        </TiltCard>
                     </ScrollReveal>
                 ))}
             </div>
@@ -103,8 +99,12 @@ const Skills: React.FC = () => {
 
         <ScrollReveal animation="fade-up">
             <div className="text-center relative z-10">
-                <Link to="/works" className="btn btn-filled px-8 py-4 text-base shadow-glow-primary">
-                    See Skills in Action <ArrowRight size={20} />
+                <Link 
+                  to="/works" 
+                  className="btn px-10 py-5 rounded-2xl bg-black border-2 border-primary text-white font-black uppercase tracking-widest hover:shadow-[0_0_30px_rgba(34,211,238,0.5)] transition-all group active:scale-95"
+                >
+                    See Skills in Action 
+                    <ArrowRight size={22} className="group-hover:translate-x-1 transition-transform ml-2" />
                 </Link>
             </div>
         </ScrollReveal>
